@@ -1,0 +1,4 @@
+backend/tmp/
+backend/bin/
+backend/coverage.out
+.env
