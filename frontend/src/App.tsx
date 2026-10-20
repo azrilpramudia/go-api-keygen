@@ -17,13 +17,13 @@ export default function App() {
         </p>
       )}
 
-      <ul className="mt-6 space-y-2 font-mono text-sm">
+      <ul className="mt-6 space-y-2 text-sm">
         {keys.map((k) => (
           <li
             key={k.value}
             className="flex items-center justify-between gap-3 rounded-lg border p-3"
           >
-            <span className="break-all">{k.value}</span>
+            <span className="break-all font-mono">{k.value}</span>
             <LevelBadge level={k.level} />
           </li>
         ))}
