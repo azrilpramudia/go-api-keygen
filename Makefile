@@ -1,6 +1,9 @@
 BACKEND  := backend
 FRONTEND := frontend
 
+-include $(BACKEND)/.env
+export
+
 .PHONY: help run dev build test cover fmt vet tidy redis-up redis-down clean
 
 help: 

@@ -1,0 +1,19 @@
+# Secret & Configuration
+.env
+.env.*
+!.env.example
+
+# Artefak build/dev
+tmp/
+bin/
+coverage.out
+.air.toml
+
+# Repo & dokumen
+.git
+.gitignore
+*.md
+
+# Docker
+Dockerfile
+.dockerignore
