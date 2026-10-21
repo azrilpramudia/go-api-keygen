@@ -15,7 +15,7 @@ export const LEVELS: Record<
     className: "bg-amber-50 text-amber-800 ring-amber-200",
   },
   high: {
-    label: "Production Ready",
+    label: "High Security",
     description: "128 bits or more; safe to use as a secret",
     className: "bg-emerald-50 text-emerald-800 ring-emerald-200",
   },

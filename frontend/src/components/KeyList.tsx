@@ -3,7 +3,6 @@ import { Check, Copy, Download, Eye, EyeOff, Trash2 } from "lucide-react";
 import { downloadEnv, downloadTxt } from "../lib/download";
 import { useCopy } from "../hooks/useCopy";
 import { KeyItem } from "./KeyItem";
-import { LevelBadge } from "./LevelBadge";
 import type { ToastState } from "../hooks/useToast";
 import type { GeneratedKey } from "../types/key";
 
@@ -29,12 +28,12 @@ export function KeyList({ keys, onClear, onNotify }: Props) {
   }
 
   return (
-    <section className="mt-8" aria-label="Generated results">
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-3">
-          <h2 className="text-sm font-medium">Results ({keys.length})</h2>
-          <LevelBadge level={keys[0].level} />
-        </div>
+    <section
+      className="flex min-h-0 flex-1 flex-col"
+      aria-label="Generated results"
+    >
+      <div className="mb-3 flex shrink-0 flex-wrap items-center justify-between gap-2">
+        <h2 className="text-sm font-medium">Results ({keys.length})</h2>
 
         <div className="flex flex-wrap gap-2">
           <button
@@ -79,7 +78,7 @@ export function KeyList({ keys, onClear, onNotify }: Props) {
         </div>
       </div>
 
-      <ul className="space-y-2">
+      <ul className="min-h-0 space-y-2 overflow-y-auto pr-1">
         {keys.map((k) => (
           <KeyItem key={k.value} data={k} masked={masked} onNotify={onNotify} />
         ))}

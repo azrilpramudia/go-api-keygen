@@ -54,9 +54,9 @@ export function KeyForm({ loading, onSubmit }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-3">
       <fieldset>
-        <legend className="mb-2 text-sm font-medium">
+        <legend className="mb-1.5 text-sm font-medium">
           Entropy (bits)
         </legend>
         <div className="flex flex-wrap gap-2">
@@ -76,7 +76,7 @@ export function KeyForm({ loading, onSubmit }: Props) {
             );
           })}
         </div>
-        <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-neutral-600">
+        <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-neutral-600">
           <LevelBadge level={levelForBits(bits)} />
           <span>
             Length: {outputLength(bits, format)} characters
@@ -92,7 +92,7 @@ export function KeyForm({ loading, onSubmit }: Props) {
       </fieldset>
 
       <fieldset>
-        <legend className="mb-2 text-sm font-medium">Format</legend>
+        <legend className="mb-1.5 text-sm font-medium">Format</legend>
         <div className="flex flex-wrap gap-2">
           {FORMATS.map((f) => (
             <button
@@ -109,7 +109,7 @@ export function KeyForm({ loading, onSubmit }: Props) {
       </fieldset>
 
       <div>
-        <label htmlFor="prefix" className="mb-2 block text-sm font-medium">
+        <label htmlFor="prefix" className="mb-1.5 block text-sm font-medium">
           Prefix{" "}
           <span className="font-normal text-neutral-500">(optional)</span>
         </label>
@@ -149,7 +149,7 @@ export function KeyForm({ loading, onSubmit }: Props) {
       </div>
 
       <div>
-        <label htmlFor="count" className="mb-2 block text-sm font-medium">
+        <label htmlFor="count" className="mb-1.5 block text-sm font-medium">
           Number of keys{" "}
           <span className="font-normal text-neutral-500">(1–{MAX_COUNT})</span>
         </label>
