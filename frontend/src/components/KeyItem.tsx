@@ -21,7 +21,7 @@ export function KeyItem({ data, masked, onNotify }: Props) {
   }
 
   return (
-    <li className="flex items-center gap-3 rounded-lg border border-neutral-200 bg-white p-3">
+    <li className="flex items-center gap-3 rounded-lg border border-neutral-200 bg-white p-3 dark:border-neutral-700 dark:bg-neutral-950">
       <code
         className={`min-w-0 flex-1 break-all font-mono text-sm ${masked ? "select-none" : "select-all"}`}
       >
@@ -31,7 +31,7 @@ export function KeyItem({ data, masked, onNotify }: Props) {
         type="button"
         onClick={handleCopy}
         aria-label="Copy key"
-        className="shrink-0 rounded-md p-2 text-neutral-600 transition hover:bg-neutral-100"
+        className="shrink-0 rounded-md p-2 text-neutral-600 transition hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800"
       >
         {copied ? (
           <Check className="size-4 text-emerald-600" />

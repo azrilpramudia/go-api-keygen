@@ -12,7 +12,9 @@ export function Toast({ toast }: { toast: ToastState | null }) {
         <div
           key={toast.id}
           className={`flex animate-toast-in items-center gap-2 rounded-lg px-4 py-2.5 text-sm text-white shadow-lg ${
-            toast.kind === "success" ? "bg-neutral-900" : "bg-red-600"
+            toast.kind === "success"
+              ? "bg-neutral-900 dark:bg-neutral-100 dark:text-neutral-900"
+              : "bg-red-600"
           }`}
         >
           {toast.kind === "success" ? (

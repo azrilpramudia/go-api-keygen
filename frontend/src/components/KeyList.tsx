@@ -13,7 +13,7 @@ interface Props {
 }
 
 const btn =
-  "inline-flex items-center gap-1.5 rounded-md border border-neutral-300 bg-white px-2.5 py-1.5 text-xs font-medium text-neutral-700 transition hover:bg-neutral-100";
+  "inline-flex items-center gap-1.5 rounded-md border border-neutral-300 bg-white px-2.5 py-1.5 text-xs font-medium text-neutral-700 transition hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:bg-neutral-800";
 
 export function KeyList({ keys, onClear, onNotify }: Props) {
   const [masked, setMasked] = useState(false);

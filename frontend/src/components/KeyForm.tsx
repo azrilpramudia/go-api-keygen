@@ -21,8 +21,8 @@ const FORMATS: { value: KeyFormat; label: string }[] = [
 const chip = (active: boolean, disabled = false) =>
   `rounded-lg border px-3 py-1.5 font-mono text-sm transition ${
     active
-      ? "border-neutral-900 bg-neutral-900 text-white"
-      : "border-neutral-300 bg-white text-neutral-700 hover:border-neutral-500"
+      ? "border-neutral-900 bg-neutral-900 text-white dark:border-neutral-100 dark:bg-neutral-100 dark:text-neutral-900"
+      : "border-neutral-300 bg-white text-neutral-700 hover:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:hover:border-neutral-500"
   } ${disabled ? "cursor-not-allowed opacity-40 hover:border-neutral-300" : ""}`;
 
 interface Props {
@@ -76,7 +76,7 @@ export function KeyForm({ loading, onSubmit }: Props) {
             );
           })}
         </div>
-        <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-neutral-600">
+        <div className="mt-2 flex flex-wrap items-center gap-3 text-sm text-neutral-600 dark:text-neutral-400">
           <LevelBadge level={levelForBits(bits)} />
           <span>
             Length: {outputLength(bits, format)} characters
@@ -84,7 +84,7 @@ export function KeyForm({ loading, onSubmit }: Props) {
           </span>
         </div>
         {isUUID && (
-          <p className="mt-2 text-xs text-neutral-500">
+          <p className="mt-2 text-xs text-neutral-500 dark:text-neutral-400">
             UUID v4 is always 128 bits, with 122 random bits (the remaining
             bits are used for version information).
           </p>
@@ -111,7 +111,9 @@ export function KeyForm({ loading, onSubmit }: Props) {
       <div>
         <label htmlFor="prefix" className="mb-1.5 block text-sm font-medium">
           Prefix{" "}
-          <span className="font-normal text-neutral-500">(optional)</span>
+          <span className="font-normal text-neutral-500 dark:text-neutral-400">
+            (optional)
+          </span>
         </label>
         <input
           id="prefix"
@@ -124,12 +126,12 @@ export function KeyForm({ loading, onSubmit }: Props) {
           aria-invalid={!prefixValid}
           className={`w-full rounded-lg border px-3 py-2 font-mono text-sm outline-none focus:ring-2 ${
             prefixValid
-              ? "border-neutral-300 focus:ring-neutral-300"
-              : "border-red-400 focus:ring-red-200"
+              ? "border-neutral-300 bg-white text-neutral-900 focus:ring-neutral-300 dark:border-neutral-700 dark:bg-neutral-950 dark:text-neutral-100 dark:focus:ring-neutral-700"
+              : "border-red-400 bg-white text-neutral-900 focus:ring-red-200 dark:bg-neutral-950 dark:text-neutral-100"
           }`}
         />
         {!prefixValid && (
-          <p className="mt-1 text-xs text-red-600">
+          <p className="mt-1 text-xs text-red-600 dark:text-red-400">
             Only letters, numbers, underscores (_), and hyphens (-), up to 32
             characters.
           </p>
@@ -140,7 +142,7 @@ export function KeyForm({ loading, onSubmit }: Props) {
               key={p}
               type="button"
               onClick={() => setPrefix(p)}
-              className="rounded-md bg-neutral-100 px-2 py-1 font-mono text-xs text-neutral-700 hover:bg-neutral-200"
+              className="rounded-md bg-neutral-100 px-2 py-1 font-mono text-xs text-neutral-700 hover:bg-neutral-200 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700"
             >
               {p}
             </button>
@@ -163,8 +165,8 @@ export function KeyForm({ loading, onSubmit }: Props) {
           aria-invalid={!countValid}
           className={`w-28 rounded-lg border px-3 py-2 text-sm outline-none focus:ring-2 ${
             countValid
-              ? "border-neutral-300 focus:ring-neutral-300"
-              : "border-red-400 focus:ring-red-200"
+              ? "border-neutral-300 bg-white text-neutral-900 focus:ring-neutral-300 dark:border-neutral-700 dark:bg-neutral-950 dark:text-neutral-100 dark:focus:ring-neutral-700"
+              : "border-red-400 bg-white text-neutral-900 focus:ring-red-200 dark:bg-neutral-950 dark:text-neutral-100"
           }`}
         />
       </div>
@@ -172,7 +174,7 @@ export function KeyForm({ loading, onSubmit }: Props) {
       <button
         type="submit"
         disabled={!canSubmit}
-        className="inline-flex items-center gap-2 rounded-lg bg-neutral-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-700 disabled:cursor-not-allowed disabled:opacity-50"
+        className="inline-flex items-center gap-2 rounded-lg bg-neutral-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-700 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-300"
       >
         {loading ? (
           <Loader2 className="size-4 animate-spin" />
