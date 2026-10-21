@@ -27,9 +27,9 @@ func TestGenerateHandler(t *testing.T) {
 		want int
 	}{
 		{"valid", `{"bits":128,"format":"hex","prefix":"sk_live_","count":2}`, http.StatusOK},
-		{"bits tidak diizinkan", `{"bits":8,"format":"hex"}`, http.StatusBadRequest},
-		{"format tidak dikenal", `{"bits":64,"format":"xyz"}`, http.StatusBadRequest},
-		{"json rusak", `{bits:`, http.StatusBadRequest},
+		{"unsupported bits", `{"bits":8,"format":"hex"}`, http.StatusBadRequest},
+		{"unknown format", `{"bits":64,"format":"xyz"}`, http.StatusBadRequest},
+		{"malformed JSON", `{bits:`, http.StatusBadRequest},
 	}
 
 	for _, tt := range tests {

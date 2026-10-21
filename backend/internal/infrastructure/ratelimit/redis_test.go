@@ -30,11 +30,11 @@ func TestRedisLimiter(t *testing.T) {
 	}
 
 	if res, _ := l.Allow(ctx, "5.6.7.8"); !res.Allowed {
-		t.Fatal("IP lain tidak boleh terpengaruh")
+		t.Fatal("another IP should not be affected")
 	}
 
 	mr.FastForward(time.Minute + time.Second)
 	if res, _ := l.Allow(ctx, "1.2.3.4"); !res.Allowed {
-		t.Fatal("harus boleh lagi setelah window lewat")
+		t.Fatal("request should be allowed again after the window expires")
 	}
 }
