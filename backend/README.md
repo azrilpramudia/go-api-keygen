@@ -138,7 +138,7 @@ credentials and rate-limit settings through environment variables.
    `REDIS_ADDR` to its `host:port` address and `REDIS_PASSWORD` if required.
 4. Set `CORS_ORIGIN` to the exact public frontend origin, including
    `https://` (for example, `https://app.example.com`).
-5. Set the service health check path to `/healthz`.
+5. Set the service health check path to `/health`.
 6. Configure optional `RATE_LIMIT`, `RATE_WINDOW`, and `TRUSTED_PROXIES`
    variables as needed. Render supplies `PORT` to web services; the API reads
    that value automatically.
@@ -146,3 +146,9 @@ credentials and rate-limit settings through environment variables.
 Keep Redis credentials private. The current Redis configuration supports an
 address and password; confirm the Redis provider's network and TLS requirements
 are compatible with the service configuration before selecting a provider.
+
+The rate limiter uses the connecting IP address. Behind a reverse proxy, set
+`TRUSTED_PROXIES` to the proxy IP addresses or CIDRs supplied by your hosting
+provider so requests can be limited by their actual client IP. Only trust
+documented proxy ranges; trusting arbitrary proxies can allow clients to spoof
+their IP address.

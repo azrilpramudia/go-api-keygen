@@ -41,7 +41,7 @@ export async function generateKeys(
     } | null;
     const retryAfter = Number(res.headers.get("Retry-After")) || undefined;
     throw new ApiError(
-      body?.error ?? `Request gagal (${res.status})`,
+      body?.error ?? `Request failed (${res.status})`,
       res.status,
       retryAfter,
     );
