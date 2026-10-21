@@ -1,78 +1,83 @@
-# React + TypeScript + Vite
+# API Key Generator Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React and TypeScript frontend for the API Key Generator. It provides a
+responsive interface for configuring key generation, viewing and copying
+results, and downloading keys as `.txt` or `.env` files.
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js 20.19+ or 22.12+
+- npm
+- The API Key Generator backend for key generation
 
-## React Compiler
+## Run locally
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Run these commands from the `frontend` directory:
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Open `http://localhost:5173`. During development, Vite proxies `/api` requests
+to `http://localhost:3000`. Start the backend on that address, or update the
+proxy in `vite.config.ts` if your backend uses another local address.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Configuration
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Variable       | Description                                                                                                                                                                                                                                  |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `VITE_API_URL` | Optional base URL for the backend API. Leave unset to use the current origin. Set it to the backend's public origin when frontend and backend are hosted separately, for example `https://api.example.com`. Do not include a trailing slash. |
 
+Create a `.env.local` file in the `frontend` directory for local overrides:
+
+```dotenv
+VITE_API_URL=http://localhost:3000
 ```
+
+Vite only exposes variables prefixed with `VITE_` to frontend code. Never put
+secrets or private credentials in frontend environment variables.
+
+## Available scripts
+
+| Command           | Description                                                      |
+| ----------------- | ---------------------------------------------------------------- |
+| `npm run dev`     | Start the Vite development server on port `5173`.                |
+| `npm run build`   | Type-check the project and create a production build in `dist/`. |
+| `npm run preview` | Serve the production build locally for review.                   |
+| `npm run lint`    | Run ESLint on the frontend.                                      |
+
+## Features
+
+- Configure entropy (`16`, `32`, `48`, `64`, `128`, or `256` bits), output
+  format (`hex`, `base64`, `base62`, or `UUID v4`), optional prefix, and key
+  count.
+- Generate up to 10 keys per request. Prefixes may contain ASCII letters,
+  numbers, underscores, and hyphens, up to 32 characters.
+- View, mask, copy, and download generated keys.
+- Toggle between light and dark themes. The theme preference is saved in the
+  browser's local storage.
+- Use a responsive layout with a single-viewport design.
+
+Generated keys are shown only once and are not saved by the frontend. Treat
+them as secrets and avoid generating production credentials on a public or
+untrusted deployment.
+
+## Deploy to Vercel
+
+1. Import the repository into Vercel.
+2. Set the **Root Directory** to `frontend`.
+3. Use the following build settings:
+   - **Framework Preset:** Vite
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `dist`
+   - **Install Command:** `npm install`
+4. Add `VITE_API_URL` as a project environment variable and set it to the
+   backend's public origin, such as `https://api.example.com`.
+5. Deploy the project.
+6. Configure the backend's `CORS_ORIGIN` to match the deployed frontend origin
+   exactly, including `https://` and any custom domain.
+
+The Vite development proxy is for local development only. Production requests
+use `VITE_API_URL`; ensure the backend is reachable from users' browsers and
+allows the deployed frontend origin through CORS.
