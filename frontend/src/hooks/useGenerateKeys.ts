@@ -6,12 +6,12 @@ function toMessage(err: unknown): string {
   if (err instanceof ApiError) {
     if (err.status === 429) {
       return err.retryAfter
-        ? `Terlalu banyak permintaan. Coba lagi dalam ${err.retryAfter} detik.`
-        : "Terlalu banyak permintaan. Coba lagi sebentar lagi.";
+        ? `Too many requests. Try again in ${err.retryAfter} seconds.`
+        : "Too many requests. Please try again shortly.";
     }
     return err.message;
   }
-  return "Terjadi kesalahan tak terduga";
+  return "An unexpected error occurred";
 }
 
 export function useGenerateKeys() {

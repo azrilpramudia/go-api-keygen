@@ -24,15 +24,15 @@ export function KeyList({ keys, onClear, onNotify }: Props) {
 
   async function copyAll() {
     const ok = await copy(keys.map((k) => k.value).join("\n"));
-    if (ok) onNotify(`${keys.length} key disalin ke clipboard`);
-    else onNotify("Gagal menyalin", "error");
+    if (ok) onNotify(`${keys.length} keys copied to clipboard`);
+    else onNotify("Failed to copy", "error");
   }
 
   return (
-    <section className="mt-8" aria-label="Hasil generate">
+    <section className="mt-8" aria-label="Generated results">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-3">
-          <h2 className="text-sm font-medium">Hasil ({keys.length})</h2>
+          <h2 className="text-sm font-medium">Results ({keys.length})</h2>
           <LevelBadge level={keys[0].level} />
         </div>
 
@@ -47,7 +47,7 @@ export function KeyList({ keys, onClear, onNotify }: Props) {
             ) : (
               <EyeOff className="size-3.5" />
             )}
-            {masked ? "Tampilkan" : "Sembunyikan"}
+            {masked ? "Show" : "Hide"}
           </button>
           {keys.length > 1 && (
             <button type="button" className={btn} onClick={copyAll}>
@@ -56,7 +56,7 @@ export function KeyList({ keys, onClear, onNotify }: Props) {
               ) : (
                 <Copy className="size-3.5" />
               )}
-              Salin semua
+              Copy all
             </button>
           )}
           <button
@@ -74,7 +74,7 @@ export function KeyList({ keys, onClear, onNotify }: Props) {
             <Download className="size-3.5" /> .env
           </button>
           <button type="button" className={btn} onClick={onClear}>
-            <Trash2 className="size-3.5" /> Hapus
+            <Trash2 className="size-3.5" /> Clear
           </button>
         </div>
       </div>

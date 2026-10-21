@@ -57,7 +57,7 @@ export function KeyForm({ loading, onSubmit }: Props) {
     <form onSubmit={handleSubmit} className="space-y-6">
       <fieldset>
         <legend className="mb-2 text-sm font-medium">
-          Ukuran entropi (bit)
+          Entropy (bits)
         </legend>
         <div className="flex flex-wrap gap-2">
           {BIT_OPTIONS.map((b) => {
@@ -79,14 +79,14 @@ export function KeyForm({ loading, onSubmit }: Props) {
         <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-neutral-600">
           <LevelBadge level={levelForBits(bits)} />
           <span>
-            Panjang: {outputLength(bits, format)} karakter
+            Length: {outputLength(bits, format)} characters
             {prefix ? ` + prefix (${prefix.length})` : ""}
           </span>
         </div>
         {isUUID && (
           <p className="mt-2 text-xs text-neutral-500">
-            UUID v4 selalu 128 bit, dengan 122 bit di antaranya acak (sisanya
-            penanda versi).
+            UUID v4 is always 128 bits, with 122 random bits (the remaining
+            bits are used for version information).
           </p>
         )}
       </fieldset>
@@ -111,7 +111,7 @@ export function KeyForm({ loading, onSubmit }: Props) {
       <div>
         <label htmlFor="prefix" className="mb-2 block text-sm font-medium">
           Prefix{" "}
-          <span className="font-normal text-neutral-500">(opsional)</span>
+          <span className="font-normal text-neutral-500">(optional)</span>
         </label>
         <input
           id="prefix"
@@ -130,8 +130,8 @@ export function KeyForm({ loading, onSubmit }: Props) {
         />
         {!prefixValid && (
           <p className="mt-1 text-xs text-red-600">
-            Hanya huruf, angka, garis bawah (_), dan strip (-), maksimal 32
-            karakter.
+            Only letters, numbers, underscores (_), and hyphens (-), up to 32
+            characters.
           </p>
         )}
         <div className="mt-2 flex flex-wrap gap-2">
@@ -150,7 +150,7 @@ export function KeyForm({ loading, onSubmit }: Props) {
 
       <div>
         <label htmlFor="count" className="mb-2 block text-sm font-medium">
-          Jumlah key{" "}
+          Number of keys{" "}
           <span className="font-normal text-neutral-500">(1–{MAX_COUNT})</span>
         </label>
         <input

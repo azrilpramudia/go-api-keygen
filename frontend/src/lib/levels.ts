@@ -6,17 +6,17 @@ export const LEVELS: Record<
 > = {
   weak: {
     label: "Very Weak",
-    description: "Hanya untuk demo, mudah ditebak",
+    description: "For demos only; easy to guess",
     className: "bg-red-50 text-red-800 ring-red-200",
   },
   medium: {
     label: "Medium Security",
-    description: "Cukup untuk identifier, bukan untuk secret",
+    description: "Suitable for identifiers, not secrets",
     className: "bg-amber-50 text-amber-800 ring-amber-200",
   },
   high: {
     label: "Production Ready",
-    description: "128 bit ke atas, aman dipakai sebagai secret",
+    description: "128 bits or more; safe to use as a secret",
     className: "bg-emerald-50 text-emerald-800 ring-emerald-200",
   },
 };

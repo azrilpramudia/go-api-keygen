@@ -15,9 +15,9 @@ export function KeyItem({ data, masked, onNotify }: Props) {
 
   async function handleCopy() {
     const ok = await copy(data.value);
-    if (ok) onNotify("Key disalin ke clipboard");
+    if (ok) onNotify("Key copied to clipboard");
     else
-      onNotify("Gagal menyalin. Seleksi teksnya lalu salin manual.", "error");
+      onNotify("Failed to copy. Select the text and copy it manually.", "error");
   }
 
   return (
@@ -30,7 +30,7 @@ export function KeyItem({ data, masked, onNotify }: Props) {
       <button
         type="button"
         onClick={handleCopy}
-        aria-label="Salin key"
+        aria-label="Copy key"
         className="shrink-0 rounded-md p-2 text-neutral-600 transition hover:bg-neutral-100"
       >
         {copied ? (

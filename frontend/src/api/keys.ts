@@ -32,7 +32,7 @@ export async function generateKeys(
     });
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") throw err;
-    throw new ApiError("Tidak dapat terhubung ke server", 0);
+    throw new ApiError("Unable to connect to the server", 0);
   }
 
   if (!res.ok) {
